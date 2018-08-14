@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VolunteerInfoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="VolunteerInfoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="VolunteerInfoes" EntityType="VolunteerInfoModel.VolunteerInfo" />
+    <EntitySet Name="Status" EntityType="VolunteerInfoModel.Status" />
+    <AssociationSet Name="VolunteerInfoStatus" Association="VolunteerInfoModel.VolunteerInfoStatus">
+      <End Role="VolunteerInfo" EntitySet="VolunteerInfoes" />
+      <End Role="Status" EntitySet="Status" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="VolunteerInfo">
+    <Key>
+      <PropertyRef Name="LastName" />
+    </Key>
+    <Property Name="LastName" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" />
+    <NavigationProperty Name="Status" Relationship="VolunteerInfoModel.VolunteerInfoStatus" FromRole="VolunteerInfo" ToRole="Status" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="ApprovedID" />
+    </Key>
+    <Property Name="ApprovedID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PendingApprovalID" Type="String" Nullable="false" />
+    <Property Name="DisapprovedID" Type="String" Nullable="false" />
+    <Property Name="InactiveID" Type="String" Nullable="false" />
+    <Property Name="AllID" Type="String" Nullable="false" />
+    <NavigationProperty Name="VolunteerInfo" Relationship="VolunteerInfoModel.VolunteerInfoStatus" FromRole="Status" ToRole="VolunteerInfo" />
+  </EntityType>
+  <Association Name="VolunteerInfoStatus">
+    <End Type="VolunteerInfoModel.VolunteerInfo" Role="VolunteerInfo" Multiplicity="1" />
+    <End Type="VolunteerInfoModel.Status" Role="Status" Multiplicity="*" />
+  </Association>
+</Schema>
