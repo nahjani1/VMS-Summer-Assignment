@@ -202,7 +202,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\Oppurtunities.cs" />
     <Compile Include="Controllers\Volunteer.cs" />
+    <Compile Include="DAL\OpprtunitiyInitializer.cs" />
+    <Compile Include="DAL\OppurtunityContext.cs" />
     <Compile Include="DAL\VolunteerContext.cs" />
     <Compile Include="DAL\VolunteerInitializer.cs" />
     <Compile Include="Global.asax.cs">
@@ -211,6 +214,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Matches.cs" />
+    <Compile Include="Models\Oppurtunities.cs" />
     <Compile Include="Models\Status.cs">
       <DependentUpon>Volunteer Model.tt</DependentUpon>
     </Compile>
@@ -270,7 +275,9 @@
       <DependentUpon>Volunteer Model.edmx</DependentUpon>
       <LastGenOutput>Volunteer Model.cs</LastGenOutput>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -296,17 +303,20 @@
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
     <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
+    <Content Include="Views\Home\Manage\AddPhoneNumber.cshtml" />
+    <Content Include="Views\Home\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Home\Manage\Index.cshtml" />
+    <Content Include="Views\Home\Manage\ManageLogins.cshtml" />
+    <Content Include="Views\Home\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Home\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Oppurtunities\Index.cshtml" />
+    <Content Include="Views\VolnteerInfo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

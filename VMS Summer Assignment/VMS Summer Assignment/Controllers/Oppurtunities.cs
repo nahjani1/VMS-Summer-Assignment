@@ -2,41 +2,39 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Web.Mvc;
 using VMS_Summer_Assignment.Models;
-
 namespace VMS_Summer_Assignment.Controllers
 {
-    public class VolunteerContext
+    public class OppurtunityContext
     {
-        private VolunteerContext db = new VolunteerContext();
+        private OppurtunityContext db = new OppurtunityContext();
     }
     public ActionResult Index(string sortOrder, string searchString)
     {
         ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
         ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
-        var volunteer = from s in db.Volunteer
-                          select s;
+        var oppurtunity = from s in db.Oppurtunities
+                       select s;
         if (!String.IsNullOrEmpty(searchString))
         {
-            volunteer = volunteer.Where(s => s.LastName.Contains(searchString)
+            oppurtunity = oppurtunity.Where(s => s.LastName.Contains(searchString)
                                    || s.FirstMidName.Contains(searchString));
         }
         switch (sortOrder)
         {
             case "name_desc":
-                volunteer = volunteer.OrderByDescending(s => s.LastName);
+                oppurtunity = oppurtunity.OrderByDescending(s => s.LastName);
                 break;
             case "Date":
-                volunteer = volunteer.OrderBy(s => s.EnrollmentDate);
+                oppurtunity = oppurtunity.OrderBy(s => s.EnrollmentDate);
                 break;
             case "date_desc":
-                volunteer = volunteer.OrderByDescending(s => s.EnrollmentDate);
+                oppurtunity = oppurtunity.OrderByDescending(s => s.EnrollmentDate);
                 break;
             default:
-                volunteer = volunteer.OrderBy(s => s.LastName);
+                oppurtunity = oppurtunity.OrderBy(s => s.LastName);
                 break;
         }
-        return View(volunteer.ToList());
+        return View(oppurtunity.ToList());
     }
 }
