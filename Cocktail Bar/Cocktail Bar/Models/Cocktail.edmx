@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BartenderAppDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="BartenderAppDataModelStoreContainer" />
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BartenderAppDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BartenderAppDataEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="Cocktails" EntityType="BartenderAppDataModel.Cocktails" />
+          <EntitySet Name="Menus" EntityType="BartenderAppDataModel.Menu" />
+          <AssociationSet Name="Entity1Entity2" Association="BartenderAppDataModel.Entity1Entity2">
+            <End Role="Entity1" EntitySet="Cocktails" />
+            <End Role="Entity2" EntitySet="Menus" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Cocktails">
+          <Key>
+            <PropertyRef Name="CocktailD" />
+          </Key>
+          <Property Name="CocktailD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Entity2" Relationship="BartenderAppDataModel.Entity1Entity2" FromRole="Entity1" ToRole="Entity2" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Price" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Entity1" Relationship="BartenderAppDataModel.Entity1Entity2" FromRole="Entity2" ToRole="Entity1" />
+          <Property Name="CocktailID" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="Entity1Entity2">
+          <End Type="BartenderAppDataModel.Cocktails" Role="Entity1" Multiplicity="1" />
+          <End Type="BartenderAppDataModel.Menu" Role="Entity2" Multiplicity="*" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BartenderAppDataModelStoreContainer" CdmEntityContainer="BartenderAppDataEntities" />
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
